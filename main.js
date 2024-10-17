@@ -12,12 +12,25 @@ const myLibrary = [{
     id: 2
 }];
 
-function Book(title, author, pages, read, id) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.id = id;
+// class Book {
+//     constructor (title, author, pages, read, id) {
+//         this.title = title;
+//         this.author = author;
+//         this.pages = pages;
+//         this.read = read;
+//         this.id = id;
+//     }
+// }
+
+// factory function
+const createBook = (title, author, pages, read, id) => {
+    return {
+        title,
+        author,
+        pages,
+        read,
+        id
+    }
 }
 
 const hideFormSection = () => {
@@ -32,7 +45,7 @@ const addBookToLibrary = (event) => {
     const read = event.target.read.checked;
     const id = myLibrary.length + 1;
 
-    const newBook = new Book(title, author, pages, read, id);
+    const newBook = createBook(title, author, pages, read, id);
     myLibrary.unshift(newBook);
 
     event.target.reset();
