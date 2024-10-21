@@ -20,6 +20,15 @@ const myLibrary = [{
 //         this.read = read;
 //         this.id = id;
 //     }
+
+//     updateBook() {
+//         this.read = !this.read;
+//     }
+
+//     removeBook() {
+//         const bookIndex = myLibrary.findIndex(b => b.id === this.id);
+//         myLibrary.splice(bookIndex, 1);
+//     }
 // }
 
 // factory function
@@ -31,6 +40,15 @@ const createBook = (title, author, pages, read, id) => {
         read,
         id
     }
+}
+
+const updateBook = (book) => {
+    book.read = !book.read;
+}
+
+const removeBook = (book) => {
+    const bookIndex = myLibrary.findIndex(b => b.id === book.id);
+    myLibrary.splice(bookIndex, 1);
 }
 
 const hideFormSection = () => {
@@ -105,14 +123,13 @@ const displayBooks = book => {
     bookList.append(bookCard);
 
     updateStatusBtn.addEventListener('click', () => {
-        book.read = !book.read;
+        updateBook(book);
         status.textContent = `Status: ${book.read ? 'Read' : 'Not Read'}`;
     });
 
     removeBtn.addEventListener('click', () => {
         bookList.removeChild(bookCard);
-        const bookIndex = myLibrary.findIndex(b => b.id === book.id);
-        myLibrary.splice(bookIndex, 1);
+        removeBook(book);
     });
 }
 
